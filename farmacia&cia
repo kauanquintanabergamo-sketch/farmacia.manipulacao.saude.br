@@ -1,0 +1,302 @@
+import React from "react";
+import { motion } from "framer-motion";
+import { Phone, MapPin, Clock, Pill, ShieldCheck, Truck, Syringe, FlaskConical, Lock, Sparkles, Instagram, Facebook, MessageSquare } from "lucide-react";
+
+// Observação: substitua o número de telefone e o link do WhatsApp abaixo pelos reais
+const PHONE = "+55 11 99999-0000"; // Ex.: +55 11 3333-4444
+const WHATSAPP = "https://wa.me/5511999990000"; // Ex.: https://wa.me/551133334444
+
+const ADDRESS = "Rua Gil de Oliveira, 187 - Chácara Seis de Outubro, São Paulo - SP, 03509-020";
+const MAPS_LINK = "https://www.google.com/maps?q=Rua+Gil+de+Oliveira,+187+-+Ch%C3%A1cara+Seis+de+Outubro,+S%C3%A3o+Paulo+-+SP,+03509-020";
+
+const units = [
+  { name: "Vila Matilde (Matriz)", address: ADDRESS },
+  { name: "Mooca", address: "Unidade Mooca — São Paulo/SP" },
+  { name: "Morumbi", address: "Unidade Morumbi — São Paulo/SP" },
+  { name: "Freguesia do Ó", address: "Unidade Freguesia do Ó — São Paulo/SP" },
+  { name: "Porto, Portugal", address: "Unidade em Portugal — Porto" },
+  { name: "Milão, Itália", address: "Unidade na Itália — Milão" },
+];
+
+const services = [
+  {
+    icon: <FlaskConical className="w-8 h-8" />,
+    title: "Manipulação com Precisão",
+    desc: "Fórmulas personalizadas com rastreio de lote, pesagem analítica e validação técnica.",
+  },
+  {
+    icon: <ShieldCheck className="w-8 h-8" />,
+    title: "Qualidade & Segurança",
+    desc: "Padrões rígidos de higiene, qualificação de fornecedores e controle de processo.",
+  },
+  {
+    icon: <Lock className="w-8 h-8" />,
+    title: "Entrada por Tokens",
+    desc: "Fluxo com senhas especializadas para mais organização e privacidade no atendimento.",
+  },
+  {
+    icon: <Syringe className="w-8 h-8" />,
+    title: "Aplicação de Medicamentos",
+    desc: "Equipe capacitada para aplicação de Ozempic e outras medicações sob prescrição.",
+  },
+  {
+    icon: <Truck className="w-8 h-8" />,
+    title: "Delivery & Retirada",
+    desc: "Entregas programadas e retirada rápida no balcão conforme sua rotina.",
+  },
+  {
+    icon: <Clock className="w-8 h-8" />,
+    title: "Até 3 Dias Úteis",
+    desc: "Receitas manipuladas prontas em até 3 dias úteis (salvo casos especiais).",
+  },
+];
+
+const photos = [
+  {
+    alt: "Laboratório moderno de manipulação",
+    caption: "Laboratório — imagem ilustrativa gerada por IA",
+  },
+  {
+    alt: "Atendimento humanizado no balcão",
+    caption: "Atendimento — imagem ilustrativa gerada por IA",
+  },
+  {
+    alt: "Aplicação de medicamento por profissional",
+    caption: "Aplicação — imagem ilustrativa gerada por IA",
+  },
+  {
+    alt: "Entrega delivery com embalagem segura",
+    caption: "Delivery — imagem ilustrativa gerada por IA",
+  },
+];
+
+const AiImage = ({ alt }: { alt: string }) => (
+  <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden shadow-sm bg-gradient-to-br from-neutral-100 to-neutral-200">
+    <div className="absolute inset-0 flex items-center justify-center">
+      <div className="text-center px-4">
+        <Sparkles className="w-10 h-10 mx-auto mb-2" />
+        <p className="text-sm">{alt}</p>
+        <p className="text-xs opacity-70">Imagem ilustrativa criada por IA</p>
+      </div>
+    </div>
+  </div>
+);
+
+export default function FarmaciaSite() {
+  return (
+    <div className="min-h-screen bg-white text-neutral-900">
+      {/* Top bar */}
+      <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 border-b">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Pill className="w-6 h-6" />
+            <div>
+              <p className="font-semibold leading-tight">Farmácia de Manipulação Vila Matilde</p>
+              <p className="text-xs leading-tight opacity-70">Tradição & Inovação há 54 anos</p>
+            </div>
+          </div>
+          <div className="hidden md:flex items-center gap-6 text-sm">
+            <a href="#sobre" className="hover:underline">Sobre</a>
+            <a href="#servicos" className="hover:underline">Serviços</a>
+            <a href="#unidades" className="hover:underline">Unidades</a>
+            <a href="#galeria" className="hover:underline">Fotos (IA)</a>
+            <a href="#contato" className="hover:underline">Contato</a>
+          </div>
+          <div className="flex items-center gap-2">
+            <a
+              href={`tel:${PHONE.replace(/\s|\(|\)|-/g, "")}`}
+              className="px-4 py-2 rounded-2xl shadow hover:shadow-md transition border flex items-center gap-2"
+            >
+              <Phone className="w-4 h-4" /> Ligar
+            </a>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noreferrer"
+              className="px-4 py-2 rounded-2xl shadow hover:shadow-md transition border flex items-center gap-2"
+            >
+              <MessageSquare className="w-4 h-4" /> WhatsApp
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-emerald-50 via-white to-sky-50" />
+        <div className="max-w-6xl mx-auto px-4 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <h1 className="text-3xl md:text-5xl font-bold leading-tight">
+              Cuidado artesanal com tecnologia de ponta
+            </h1>
+            <p className="text-base md:text-lg opacity-80">
+              Fundada há 54 anos pelo Sr. Giuseppe, nossa farmácia une tradição e inovação para manipular fórmulas com
+              segurança, precisão e ingredientes de alta qualidade.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a href="#servicos" className="px-5 py-3 rounded-2xl bg-black text-white shadow hover:shadow-md transition">Conheça os serviços</a>
+              <a href={MAPS_LINK} target="_blank" rel="noreferrer" className="px-5 py-3 rounded-2xl border shadow hover:shadow-md transition flex items-center gap-2">
+                <MapPin className="w-4 h-4" /> Como chegar
+              </a>
+            </div>
+            <div className="flex items-center gap-6 text-sm">
+              <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4" /> Padrões rígidos de higiene</div>
+              <div className="flex items-center gap-2"><Clock className="w-4 h-4" /> Pronto em até 3 dias úteis</div>
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <div className="rounded-3xl p-1 bg-gradient-to-br from-emerald-200/60 via-emerald-100 to-sky-200/60">
+              <div className="rounded-3xl bg-white p-6">
+                <AiImage alt="Equipe em laboratório moderno de manipulação" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Sobre */}
+      <section id="sobre" className="max-w-6xl mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-2 gap-10 items-start">
+          <div className="space-y-4">
+            <h2 className="text-2xl md:text-3xl font-semibold">Nossa história</h2>
+            <p className="opacity-80">
+              Localizada na Vila Matilde, nossa farmácia nasceu da dedicação do italiano Sr. Giuseppe, que trouxe da Europa
+              a paixão por cuidar de pessoas com atenção e qualidade. Ao longo das décadas, nos modernizamos sem perder o
+              cuidado artesanal que nos diferencia.
+            </p>
+            <p className="opacity-80">
+              Hoje contamos com tecnologias de ponta para garantir segurança, precisão e rastreabilidade em cada etapa da
+              manipulação. Priorizamos ingredientes de alta qualidade e seguimos protocolos rigorosos de higiene e
+              controle.
+            </p>
+          </div>
+          <div className="rounded-3xl border p-6">
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3"><Lock className="w-5 h-5 mt-1" /><span><b>Entrada com tokens e senhas</b> para mais segurança e organização no atendimento.</span></li>
+              <li className="flex items-start gap-3"><Syringe className="w-5 h-5 mt-1" /><span><b>Aplicação de medicamentos (inclui Ozempic)</b> por profissionais capacitados.</span></li>
+              <li className="flex items-start gap-3"><Truck className="w-5 h-5 mt-1" /><span><b>Delivery e retirada no balcão</b>, adaptados à sua rotina.</span></li>
+              <li className="flex items-start gap-3"><Clock className="w-5 h-5 mt-1" /><span><b>Receitas em até 3 dias úteis</b>, salvo exceções de maior complexidade.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Serviços */}
+      <section id="servicos" className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-8">Serviços & Diferenciais</h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          {services.map((s, i) => (
+            <motion.div
+              key={s.title}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="rounded-2xl border p-6 hover:shadow-md transition bg-white"
+            >
+              <div className="mb-3">{s.icon}</div>
+              <h3 className="font-semibold mb-1">{s.title}</h3>
+              <p className="text-sm opacity-80">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Unidades */}
+      <section id="unidades" className="max-w-6xl mx-auto px-4 py-16">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6">Onde estamos</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {units.map((u) => (
+            <div key={u.name} className="rounded-2xl border p-6 flex items-start gap-4">
+              <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="font-semibold">{u.name}</h3>
+                <p className="text-sm opacity-80">{u.address}</p>
+                {u.name.includes("Vila Matilde") && (
+                  <a href={MAPS_LINK} target="_blank" rel="noreferrer" className="inline-block mt-2 text-sm underline">Ver no mapa</a>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Galeria IA */}
+      <section id="galeria" className="max-w-6xl mx-auto px-4 py-16">
+        <div className="flex items-end justify-between mb-6">
+          <h2 className="text-2xl md:text-3xl font-semibold">Fotos criadas por IA (ilustrativas)</h2>
+          <span className="text-xs opacity-70">*Imagens meramente ilustrativas</span>
+        </div>
+        <div className="grid md:grid-cols-4 gap-6">
+          {photos.map((p, i) => (
+            <motion.figure
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="space-y-2"
+            >
+              <AiImage alt={p.alt} />
+              <figcaption className="text-xs opacity-70">{p.caption}</figcaption>
+            </motion.figure>
+          ))}
+        </div>
+      </section>
+
+      {/* Contato */}
+      <section id="contato" className="max-w-6xl mx-auto px-4 py-16">
+        <div className="grid md:grid-cols-2 gap-10">
+          <div className="space-y-4">
+            <h2 className="text-2xl md:text-3xl font-semibold">Contato</h2>
+            <p className="opacity-80">Estamos prontos para ajudar você e seu médico com a melhor solução personalizada.</p>
+            <div className="rounded-2xl border p-6 space-y-4">
+              <div className="flex items-start gap-3"><MapPin className="w-5 h-5 mt-1" /><div><b>Endereço</b><p className="text-sm opacity-80">{ADDRESS}</p><a href={MAPS_LINK} target="_blank" rel="noreferrer" className="text-xs underline">Ver rota</a></div></div>
+              <div className="flex items-start gap-3"><Phone className="w-5 h-5 mt-1" /><div><b>Telefone</b><p className="text-sm opacity-80">{PHONE}</p></div></div>
+              <div className="flex items-start gap-3"><Clock className="w-5 h-5 mt-1" /><div><b>Horário</b><p className="text-sm opacity-80">Seg–Sex 8h–19h · Sáb 8h–13h</p></div></div>
+              <div className="flex items-center gap-3 pt-2">
+                <a href={`tel:${PHONE.replace(/\s|\(|\)|-/g, "")}`} className="px-5 py-3 rounded-2xl bg-black text-white shadow hover:shadow-md transition flex items-center gap-2"><Phone className="w-4 h-4" /> Ligar agora</a>
+                <a href={WHATSAPP} target="_blank" rel="noreferrer" className="px-5 py-3 rounded-2xl border shadow hover:shadow-md transition flex items-center gap-2"><MessageSquare className="w-4 h-4" /> Falar no WhatsApp</a>
+              </div>
+            </div>
+          </div>
+          <div className="rounded-3xl p-1 bg-gradient-to-br from-emerald-200/60 via-emerald-100 to-sky-200/60">
+            <div className="rounded-3xl bg-white p-6">
+              <AiImage alt="Fachada minimalista da farmácia com balcão de atendimento" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Rodapé */}
+      <footer className="border-t">
+        <div className="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-6 text-sm">
+          <div className="space-y-2">
+            <p className="font-semibold">Farmácia de Manipulação Vila Matilde</p>
+            <p className="opacity-70">Cuidando da sua saúde desde a fundação pelo Sr. Giuseppe.</p>
+          </div>
+          <div className="space-y-2">
+            <p className="font-semibold">Redes sociais</p>
+            <div className="flex items-center gap-4">
+              <a className="flex items-center gap-2 hover:underline" href="#"><Instagram className="w-4 h-4" /> Instagram</a>
+              <a className="flex items-center gap-2 hover:underline" href="#"><Facebook className="w-4 h-4" /> Facebook</a>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <p className="font-semibold">Avisos</p>
+            <p className="opacity-70">Imagens da galeria são ilustrativas e criadas por IA. Siga sempre as orientações do seu médico.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
